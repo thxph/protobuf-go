@@ -478,7 +478,7 @@ func unmarshalEnum(tok json.Token, fd pref.FieldDescriptor) (pref.Value, bool) {
 	switch tok.Kind() {
 	case json.String:
 		// Lookup EnumNumber based on name.
-		s := tok.ParsedString()
+		s := strings.ToUpper(tok.ParsedString())
 		if enumVal := fd.Enum().Values().ByName(pref.Name(s)); enumVal != nil {
 			return pref.ValueOfEnum(enumVal.Number()), true
 		}
