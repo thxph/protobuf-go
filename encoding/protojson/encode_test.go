@@ -2205,6 +2205,17 @@ func TestMarshal(t *testing.T) {
   "optNestedEnum": 1
 }`,
 	}, {
+		desc: "EmitEnumAsLower in singular field",
+		mo:   protojson.MarshalOptions{EmitEnumAsLower: true},
+		input: &pb2.Enums{
+			OptEnum:       pb2.Enum_ONE.Enum(),
+			OptNestedEnum: pb2.Enums_UNO.Enum(),
+		},
+		want: `{
+  "optEnum": "one",
+  "optNestedEnum": "uno"
+}`,
+	}, {
 		desc: "UseEnumNumbers in repeated field",
 		mo:   protojson.MarshalOptions{UseEnumNumbers: true},
 		input: &pb2.Enums{

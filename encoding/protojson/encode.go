@@ -7,6 +7,7 @@ package protojson
 import (
 	"encoding/base64"
 	"fmt"
+	"strings"
 
 	"google.golang.org/protobuf/internal/encoding/json"
 	"google.golang.org/protobuf/internal/encoding/messageset"
@@ -81,6 +82,8 @@ type MarshalOptions struct {
 	//  ║ {}    │ map fields                 ║
 	//  ╚═══════╧════════════════════════════╝
 	EmitUnpopulated bool
+
+	EmitEnumAsLower bool
 
 	// Resolver is used for looking up types when expanding google.protobuf.Any
 	// messages. If nil, this defaults to using protoregistry.GlobalTypes.
@@ -296,7 +299,11 @@ func (e encoder) marshalSingular(val pref.Value, fd pref.FieldDescriptor) error 
 			if e.opts.UseEnumNumbers || desc == nil {
 				e.WriteInt(int64(val.Enum()))
 			} else {
-				e.WriteString(string(desc.Name()))
+				if e.opts.EmitEnumAsLower {
+					e.WriteString(strings.ToLower(string(desc.Name())))
+				} else {
+					e.WriteString(string(desc.Name()))
+				}
 			}
 		}
 
