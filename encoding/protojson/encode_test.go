@@ -6,6 +6,7 @@ package protojson_test
 
 import (
 	"bytes"
+	"google.golang.org/protobuf/internal/testprotos/test3"
 	"math"
 	"testing"
 
@@ -31,6 +32,25 @@ import (
 
 // Disable detrand to enable direct comparisons on outputs.
 func init() { detrand.Disable() }
+
+func TestMarshal2(t *testing.T) {
+	mo := protojson.MarshalOptions{
+		FieldsFilter: protojson.FieldsFilter{
+			Replacement: "_MASKED_",
+			Fields:      []string{"NestedMessage.a"},
+		},
+	}
+	pb := &test3.TestAllTypes{
+		SingularNestedMessage: &test3.TestAllTypes_NestedMessage{
+			A: 10,
+		},
+		SingularDouble: 10.0,
+	}
+	x := mo.Format(pb)
+	if x != "{\"singularDouble\":10,\"singularNestedMessage\":{\"a\":\"_MASKED_\"}}" {
+		t.Errorf("unexpected")
+	}
+}
 
 func TestMarshal(t *testing.T) {
 	tests := []struct {
