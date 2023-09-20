@@ -84,6 +84,8 @@ type MarshalOptions struct {
 
 	EmitEnumAsLower bool
 
+	FieldsFilter FieldsFilter
+
 	// Resolver is used for looking up types when expanding google.protobuf.Any
 	// messages. If nil, this defaults to using protoregistry.GlobalTypes.
 	Resolver interface {
@@ -237,9 +239,24 @@ func (e encoder) marshalMessage(m protoreflect.Message, typeURL string) error {
 		if err = e.WriteName(name); err != nil {
 			return false
 		}
+
+		if e.opts.FieldsFilter.Replacement != "" {
+			fullName := string(fd.FullName())
+
+			for _, suffix := range e.opts.FieldsFilter.Fields {
+				if strings.HasSuffix(fullName, suffix) {
+					if err = e.WriteString(e.opts.FieldsFilter.Replacement); err != nil {
+						return false
+					}
+					return true
+				}
+			}
+		}
+
 		if err = e.marshalValue(v, fd); err != nil {
 			return false
 		}
+
 		return true
 	})
 	return err
