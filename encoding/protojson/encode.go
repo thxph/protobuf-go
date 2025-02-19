@@ -7,6 +7,7 @@ package protojson
 import (
 	"encoding/base64"
 	"fmt"
+	"strings"
 
 	"google.golang.org/protobuf/internal/encoding/json"
 	"google.golang.org/protobuf/internal/encoding/messageset"
@@ -43,6 +44,10 @@ func Marshal(m proto.Message) ([]byte, error) {
 // MarshalOptions is a configurable JSON format marshaler.
 type MarshalOptions struct {
 	pragma.NoUnkeyedLiterals
+
+	// thxph - extra features
+	EmitEnumAsLower bool
+	FieldsFilter fieldsFilter
 
 	// Multiline specifies whether the marshaler should format the output in
 	// indented-form with every textual element on a new line.
@@ -101,6 +106,7 @@ type MarshalOptions struct {
 	// EmitUnpopulated takes precedence over EmitDefaultValues since the former generates
 	// a strict superset of the latter.
 	EmitDefaultValues bool
+
 
 	// Resolver is used for looking up types when expanding google.protobuf.Any
 	// messages. If nil, this defaults to using protoregistry.GlobalTypes.
@@ -265,9 +271,22 @@ func (e encoder) marshalMessage(m protoreflect.Message, typeURL string) error {
 		if err = e.WriteName(name); err != nil {
 			return false
 		}
+
+		if e.opts.FieldsFilter.replacement != "" {
+			fullName := string(fd.FullName())
+
+			if _, exists := e.opts.FieldsFilter.fields[fullName]; exists {
+				if err = e.WriteString(e.opts.FieldsFilter.replacement); err != nil {
+					return false
+				}
+				return true
+			}
+		}
+
 		if err = e.marshalValue(v, fd); err != nil {
 			return false
 		}
+
 		return true
 	})
 	return err
@@ -332,7 +351,11 @@ func (e encoder) marshalSingular(val protoreflect.Value, fd protoreflect.FieldDe
 			if e.opts.UseEnumNumbers || desc == nil {
 				e.WriteInt(int64(val.Enum()))
 			} else {
-				e.WriteString(string(desc.Name()))
+				if e.opts.EmitEnumAsLower {
+					e.WriteString(strings.ToLower(string(desc.Name())))
+				} else {
+					e.WriteString(string(desc.Name()))
+				}
 			}
 		}
 

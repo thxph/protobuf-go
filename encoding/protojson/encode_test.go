@@ -6,6 +6,7 @@ package protojson_test
 
 import (
 	"bytes"
+	"google.golang.org/protobuf/internal/testprotos/test3"
 	"math"
 	"testing"
 
@@ -31,6 +32,22 @@ import (
 
 // Disable detrand to enable direct comparisons on outputs.
 func init() { detrand.Disable() }
+
+func TestMarshal2(t *testing.T) {
+	mo := protojson.MarshalOptions{
+		FieldsFilter: protojson.FieldsFilter([]string{"goproto.proto.test3.TestAllTypes.NestedMessage.a"}, "_MASKED_"),
+	}
+	pb := &test3.TestAllTypes{
+		SingularNestedMessage: &test3.TestAllTypes_NestedMessage{
+			A: 10,
+		},
+		SingularDouble: 10.0,
+	}
+	x := mo.Format(pb)
+	if x != "{\"singularDouble\":10,\"singularNestedMessage\":{\"a\":\"_MASKED_\"}}" {
+		t.Errorf("unexpected")
+	}
+}
 
 func TestMarshal(t *testing.T) {
 	tests := []struct {
@@ -2419,6 +2436,17 @@ func TestMarshal(t *testing.T) {
 		want: `{
   "optEnum": 1,
   "optNestedEnum": 1
+}`,
+	}, {
+		desc: "EmitEnumAsLower in singular field",
+		mo:   protojson.MarshalOptions{EmitEnumAsLower: true},
+		input: &pb2.Enums{
+			OptEnum:       pb2.Enum_ONE.Enum(),
+			OptNestedEnum: pb2.Enums_UNO.Enum(),
+		},
+		want: `{
+  "optEnum": "one",
+  "optNestedEnum": "uno"
 }`,
 	}, {
 		desc: "UseEnumNumbers in repeated field",

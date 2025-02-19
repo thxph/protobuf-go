@@ -487,7 +487,7 @@ func unmarshalEnum(tok json.Token, fd protoreflect.FieldDescriptor, discardUnkno
 	switch tok.Kind() {
 	case json.String:
 		// Lookup EnumNumber based on name.
-		s := tok.ParsedString()
+    s := strings.ToUpper(tok.ParsedString())
 		if enumVal := fd.Enum().Values().ByName(protoreflect.Name(s)); enumVal != nil {
 			return protoreflect.ValueOfEnum(enumVal.Number()), true
 		}
