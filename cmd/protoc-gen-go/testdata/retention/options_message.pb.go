@@ -13,26 +13,24 @@ import (
 	descriptorpb "google.golang.org/protobuf/types/descriptorpb"
 	reflect "reflect"
 	sync "sync"
+	unsafe "unsafe"
 )
 
 // Retention attributes set on fields nested within a message
 type OptionsMessage struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	PlainField            *int32 `protobuf:"varint,1,opt,name=plain_field,json=plainField" json:"plain_field,omitempty"`
-	RuntimeRetentionField *int32 `protobuf:"varint,2,opt,name=runtime_retention_field,json=runtimeRetentionField" json:"runtime_retention_field,omitempty"`
-	SourceRetentionField  *int32 `protobuf:"varint,3,opt,name=source_retention_field,json=sourceRetentionField" json:"source_retention_field,omitempty"`
+	state                 protoimpl.MessageState `protogen:"open.v1"`
+	PlainField            *int32                 `protobuf:"varint,1,opt,name=plain_field,json=plainField" json:"plain_field,omitempty"`
+	RuntimeRetentionField *int32                 `protobuf:"varint,2,opt,name=runtime_retention_field,json=runtimeRetentionField" json:"runtime_retention_field,omitempty"`
+	SourceRetentionField  *int32                 `protobuf:"varint,3,opt,name=source_retention_field,json=sourceRetentionField" json:"source_retention_field,omitempty"`
+	unknownFields         protoimpl.UnknownFields
+	sizeCache             protoimpl.SizeCache
 }
 
 func (x *OptionsMessage) Reset() {
 	*x = OptionsMessage{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_cmd_protoc_gen_go_testdata_retention_options_message_proto_msgTypes[0]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
+	mi := &file_cmd_protoc_gen_go_testdata_retention_options_message_proto_msgTypes[0]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
 }
 
 func (x *OptionsMessage) String() string {
@@ -43,7 +41,7 @@ func (*OptionsMessage) ProtoMessage() {}
 
 func (x *OptionsMessage) ProtoReflect() protoreflect.Message {
 	mi := &file_cmd_protoc_gen_go_testdata_retention_options_message_proto_msgTypes[0]
-	if protoimpl.UnsafeEnabled && x != nil {
+	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
 			ms.StoreMessageInfo(mi)
@@ -128,7 +126,7 @@ var (
 
 var File_cmd_protoc_gen_go_testdata_retention_options_message_proto protoreflect.FileDescriptor
 
-var file_cmd_protoc_gen_go_testdata_retention_options_message_proto_rawDesc = []byte{
+var file_cmd_protoc_gen_go_testdata_retention_options_message_proto_rawDesc = string([]byte{
 	0x0a, 0x3a, 0x63, 0x6d, 0x64, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x2d, 0x67, 0x65, 0x6e,
 	0x2d, 0x67, 0x6f, 0x2f, 0x74, 0x65, 0x73, 0x74, 0x64, 0x61, 0x74, 0x61, 0x2f, 0x72, 0x65, 0x74,
 	0x65, 0x6e, 0x74, 0x69, 0x6f, 0x6e, 0x2f, 0x6f, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x5f, 0x6d,
@@ -177,22 +175,22 @@ var file_cmd_protoc_gen_go_testdata_retention_options_message_proto_rawDesc = []
 	0x66, 0x2f, 0x63, 0x6d, 0x64, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x2d, 0x67, 0x65, 0x6e,
 	0x2d, 0x67, 0x6f, 0x2f, 0x74, 0x65, 0x73, 0x74, 0x64, 0x61, 0x74, 0x61, 0x2f, 0x72, 0x65, 0x74,
 	0x65, 0x6e, 0x74, 0x69, 0x6f, 0x6e,
-}
+})
 
 var (
 	file_cmd_protoc_gen_go_testdata_retention_options_message_proto_rawDescOnce sync.Once
-	file_cmd_protoc_gen_go_testdata_retention_options_message_proto_rawDescData = file_cmd_protoc_gen_go_testdata_retention_options_message_proto_rawDesc
+	file_cmd_protoc_gen_go_testdata_retention_options_message_proto_rawDescData []byte
 )
 
 func file_cmd_protoc_gen_go_testdata_retention_options_message_proto_rawDescGZIP() []byte {
 	file_cmd_protoc_gen_go_testdata_retention_options_message_proto_rawDescOnce.Do(func() {
-		file_cmd_protoc_gen_go_testdata_retention_options_message_proto_rawDescData = protoimpl.X.CompressGZIP(file_cmd_protoc_gen_go_testdata_retention_options_message_proto_rawDescData)
+		file_cmd_protoc_gen_go_testdata_retention_options_message_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_cmd_protoc_gen_go_testdata_retention_options_message_proto_rawDesc), len(file_cmd_protoc_gen_go_testdata_retention_options_message_proto_rawDesc)))
 	})
 	return file_cmd_protoc_gen_go_testdata_retention_options_message_proto_rawDescData
 }
 
 var file_cmd_protoc_gen_go_testdata_retention_options_message_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
-var file_cmd_protoc_gen_go_testdata_retention_options_message_proto_goTypes = []interface{}{
+var file_cmd_protoc_gen_go_testdata_retention_options_message_proto_goTypes = []any{
 	(*OptionsMessage)(nil),           // 0: testretention.OptionsMessage
 	(*descriptorpb.FileOptions)(nil), // 1: google.protobuf.FileOptions
 }
@@ -214,25 +212,11 @@ func file_cmd_protoc_gen_go_testdata_retention_options_message_proto_init() {
 	if File_cmd_protoc_gen_go_testdata_retention_options_message_proto != nil {
 		return
 	}
-	if !protoimpl.UnsafeEnabled {
-		file_cmd_protoc_gen_go_testdata_retention_options_message_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*OptionsMessage); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: file_cmd_protoc_gen_go_testdata_retention_options_message_proto_rawDesc,
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_cmd_protoc_gen_go_testdata_retention_options_message_proto_rawDesc), len(file_cmd_protoc_gen_go_testdata_retention_options_message_proto_rawDesc)),
 			NumEnums:      0,
 			NumMessages:   1,
 			NumExtensions: 4,
@@ -244,7 +228,6 @@ func file_cmd_protoc_gen_go_testdata_retention_options_message_proto_init() {
 		ExtensionInfos:    file_cmd_protoc_gen_go_testdata_retention_options_message_proto_extTypes,
 	}.Build()
 	File_cmd_protoc_gen_go_testdata_retention_options_message_proto = out.File
-	file_cmd_protoc_gen_go_testdata_retention_options_message_proto_rawDesc = nil
 	file_cmd_protoc_gen_go_testdata_retention_options_message_proto_goTypes = nil
 	file_cmd_protoc_gen_go_testdata_retention_options_message_proto_depIdxs = nil
 }

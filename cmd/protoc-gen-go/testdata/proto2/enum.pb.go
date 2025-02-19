@@ -12,6 +12,7 @@ import (
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
 	sync "sync"
+	unsafe "unsafe"
 )
 
 // EnumType1 comment.
@@ -346,12 +347,11 @@ func (EnumContainerMessage1_EnumContainerMessage2_NestedEnumType2B) EnumDescript
 }
 
 type EnumContainerMessage1 struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	DefaultDuplicate1 *EnumType2 `protobuf:"varint,1,opt,name=default_duplicate1,json=defaultDuplicate1,enum=goproto.protoc.proto2.EnumType2,def=1" json:"default_duplicate1,omitempty"`
-	DefaultDuplicate2 *EnumType2 `protobuf:"varint,2,opt,name=default_duplicate2,json=defaultDuplicate2,enum=goproto.protoc.proto2.EnumType2,def=1" json:"default_duplicate2,omitempty"`
+	state             protoimpl.MessageState `protogen:"open.v1"`
+	DefaultDuplicate1 *EnumType2             `protobuf:"varint,1,opt,name=default_duplicate1,json=defaultDuplicate1,enum=goproto.protoc.proto2.EnumType2,def=1" json:"default_duplicate1,omitempty"`
+	DefaultDuplicate2 *EnumType2             `protobuf:"varint,2,opt,name=default_duplicate2,json=defaultDuplicate2,enum=goproto.protoc.proto2.EnumType2,def=1" json:"default_duplicate2,omitempty"`
+	unknownFields     protoimpl.UnknownFields
+	sizeCache         protoimpl.SizeCache
 }
 
 // Default values for EnumContainerMessage1 fields.
@@ -362,11 +362,9 @@ const (
 
 func (x *EnumContainerMessage1) Reset() {
 	*x = EnumContainerMessage1{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_cmd_protoc_gen_go_testdata_proto2_enum_proto_msgTypes[0]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
+	mi := &file_cmd_protoc_gen_go_testdata_proto2_enum_proto_msgTypes[0]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
 }
 
 func (x *EnumContainerMessage1) String() string {
@@ -377,7 +375,7 @@ func (*EnumContainerMessage1) ProtoMessage() {}
 
 func (x *EnumContainerMessage1) ProtoReflect() protoreflect.Message {
 	mi := &file_cmd_protoc_gen_go_testdata_proto2_enum_proto_msgTypes[0]
-	if protoimpl.UnsafeEnabled && x != nil {
+	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
 			ms.StoreMessageInfo(mi)
@@ -407,18 +405,16 @@ func (x *EnumContainerMessage1) GetDefaultDuplicate2() EnumType2 {
 }
 
 type EnumContainerMessage1_EnumContainerMessage2 struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
+	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *EnumContainerMessage1_EnumContainerMessage2) Reset() {
 	*x = EnumContainerMessage1_EnumContainerMessage2{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_cmd_protoc_gen_go_testdata_proto2_enum_proto_msgTypes[1]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
+	mi := &file_cmd_protoc_gen_go_testdata_proto2_enum_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
 }
 
 func (x *EnumContainerMessage1_EnumContainerMessage2) String() string {
@@ -429,7 +425,7 @@ func (*EnumContainerMessage1_EnumContainerMessage2) ProtoMessage() {}
 
 func (x *EnumContainerMessage1_EnumContainerMessage2) ProtoReflect() protoreflect.Message {
 	mi := &file_cmd_protoc_gen_go_testdata_proto2_enum_proto_msgTypes[1]
-	if protoimpl.UnsafeEnabled && x != nil {
+	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
 			ms.StoreMessageInfo(mi)
@@ -446,7 +442,7 @@ func (*EnumContainerMessage1_EnumContainerMessage2) Descriptor() ([]byte, []int)
 
 var File_cmd_protoc_gen_go_testdata_proto2_enum_proto protoreflect.FileDescriptor
 
-var file_cmd_protoc_gen_go_testdata_proto2_enum_proto_rawDesc = []byte{
+var file_cmd_protoc_gen_go_testdata_proto2_enum_proto_rawDesc = string([]byte{
 	0x0a, 0x2c, 0x63, 0x6d, 0x64, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x2d, 0x67, 0x65, 0x6e,
 	0x2d, 0x67, 0x6f, 0x2f, 0x74, 0x65, 0x73, 0x74, 0x64, 0x61, 0x74, 0x61, 0x2f, 0x70, 0x72, 0x6f,
 	0x74, 0x6f, 0x32, 0x2f, 0x65, 0x6e, 0x75, 0x6d, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x15,
@@ -488,23 +484,23 @@ var file_cmd_protoc_gen_go_testdata_proto2_enum_proto_rawDesc = []byte{
 	0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2f, 0x63, 0x6d, 0x64, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f,
 	0x63, 0x2d, 0x67, 0x65, 0x6e, 0x2d, 0x67, 0x6f, 0x2f, 0x74, 0x65, 0x73, 0x74, 0x64, 0x61, 0x74,
 	0x61, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x32,
-}
+})
 
 var (
 	file_cmd_protoc_gen_go_testdata_proto2_enum_proto_rawDescOnce sync.Once
-	file_cmd_protoc_gen_go_testdata_proto2_enum_proto_rawDescData = file_cmd_protoc_gen_go_testdata_proto2_enum_proto_rawDesc
+	file_cmd_protoc_gen_go_testdata_proto2_enum_proto_rawDescData []byte
 )
 
 func file_cmd_protoc_gen_go_testdata_proto2_enum_proto_rawDescGZIP() []byte {
 	file_cmd_protoc_gen_go_testdata_proto2_enum_proto_rawDescOnce.Do(func() {
-		file_cmd_protoc_gen_go_testdata_proto2_enum_proto_rawDescData = protoimpl.X.CompressGZIP(file_cmd_protoc_gen_go_testdata_proto2_enum_proto_rawDescData)
+		file_cmd_protoc_gen_go_testdata_proto2_enum_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_cmd_protoc_gen_go_testdata_proto2_enum_proto_rawDesc), len(file_cmd_protoc_gen_go_testdata_proto2_enum_proto_rawDesc)))
 	})
 	return file_cmd_protoc_gen_go_testdata_proto2_enum_proto_rawDescData
 }
 
 var file_cmd_protoc_gen_go_testdata_proto2_enum_proto_enumTypes = make([]protoimpl.EnumInfo, 6)
 var file_cmd_protoc_gen_go_testdata_proto2_enum_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
-var file_cmd_protoc_gen_go_testdata_proto2_enum_proto_goTypes = []interface{}{
+var file_cmd_protoc_gen_go_testdata_proto2_enum_proto_goTypes = []any{
 	(EnumType1)(0), // 0: goproto.protoc.proto2.EnumType1
 	(EnumType2)(0), // 1: goproto.protoc.proto2.EnumType2
 	(EnumContainerMessage1_NestedEnumType1A)(0),                       // 2: goproto.protoc.proto2.EnumContainerMessage1.NestedEnumType1A
@@ -529,37 +525,11 @@ func file_cmd_protoc_gen_go_testdata_proto2_enum_proto_init() {
 	if File_cmd_protoc_gen_go_testdata_proto2_enum_proto != nil {
 		return
 	}
-	if !protoimpl.UnsafeEnabled {
-		file_cmd_protoc_gen_go_testdata_proto2_enum_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*EnumContainerMessage1); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_cmd_protoc_gen_go_testdata_proto2_enum_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*EnumContainerMessage1_EnumContainerMessage2); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: file_cmd_protoc_gen_go_testdata_proto2_enum_proto_rawDesc,
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_cmd_protoc_gen_go_testdata_proto2_enum_proto_rawDesc), len(file_cmd_protoc_gen_go_testdata_proto2_enum_proto_rawDesc)),
 			NumEnums:      6,
 			NumMessages:   2,
 			NumExtensions: 0,
@@ -571,7 +541,6 @@ func file_cmd_protoc_gen_go_testdata_proto2_enum_proto_init() {
 		MessageInfos:      file_cmd_protoc_gen_go_testdata_proto2_enum_proto_msgTypes,
 	}.Build()
 	File_cmd_protoc_gen_go_testdata_proto2_enum_proto = out.File
-	file_cmd_protoc_gen_go_testdata_proto2_enum_proto_rawDesc = nil
 	file_cmd_protoc_gen_go_testdata_proto2_enum_proto_goTypes = nil
 	file_cmd_protoc_gen_go_testdata_proto2_enum_proto_depIdxs = nil
 }

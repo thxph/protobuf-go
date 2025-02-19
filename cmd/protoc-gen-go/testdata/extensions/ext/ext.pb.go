@@ -14,6 +14,7 @@ import (
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
 	sync "sync"
+	unsafe "unsafe"
 )
 
 type Enum int32
@@ -70,20 +71,17 @@ func (Enum) EnumDescriptor() ([]byte, []int) {
 }
 
 type Message struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Data          []byte                 `protobuf:"bytes,1,opt,name=data" json:"data,omitempty"`
 	unknownFields protoimpl.UnknownFields
-
-	Data []byte `protobuf:"bytes,1,opt,name=data" json:"data,omitempty"`
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *Message) Reset() {
 	*x = Message{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_cmd_protoc_gen_go_testdata_extensions_ext_ext_proto_msgTypes[0]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
+	mi := &file_cmd_protoc_gen_go_testdata_extensions_ext_ext_proto_msgTypes[0]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
 }
 
 func (x *Message) String() string {
@@ -94,7 +92,7 @@ func (*Message) ProtoMessage() {}
 
 func (x *Message) ProtoReflect() protoreflect.Message {
 	mi := &file_cmd_protoc_gen_go_testdata_extensions_ext_ext_proto_msgTypes[0]
-	if protoimpl.UnsafeEnabled && x != nil {
+	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
 			ms.StoreMessageInfo(mi)
@@ -117,20 +115,17 @@ func (x *Message) GetData() []byte {
 }
 
 type ExtensionGroup struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	ExtensionGroup *string `protobuf:"bytes,120,opt,name=extension_group,json=extensionGroup" json:"extension_group,omitempty"`
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	ExtensionGroup *string                `protobuf:"bytes,120,opt,name=extension_group,json=extensionGroup" json:"extension_group,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
 }
 
 func (x *ExtensionGroup) Reset() {
 	*x = ExtensionGroup{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_cmd_protoc_gen_go_testdata_extensions_ext_ext_proto_msgTypes[1]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
+	mi := &file_cmd_protoc_gen_go_testdata_extensions_ext_ext_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
 }
 
 func (x *ExtensionGroup) String() string {
@@ -141,7 +136,7 @@ func (*ExtensionGroup) ProtoMessage() {}
 
 func (x *ExtensionGroup) ProtoReflect() protoreflect.Message {
 	mi := &file_cmd_protoc_gen_go_testdata_extensions_ext_ext_proto_msgTypes[1]
-	if protoimpl.UnsafeEnabled && x != nil {
+	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
 			ms.StoreMessageInfo(mi)
@@ -165,18 +160,16 @@ func (x *ExtensionGroup) GetExtensionGroup() string {
 
 // Extend in the scope of another type.
 type ExtendingMessage struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
+	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *ExtendingMessage) Reset() {
 	*x = ExtendingMessage{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_cmd_protoc_gen_go_testdata_extensions_ext_ext_proto_msgTypes[2]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
+	mi := &file_cmd_protoc_gen_go_testdata_extensions_ext_ext_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
 }
 
 func (x *ExtendingMessage) String() string {
@@ -187,7 +180,7 @@ func (*ExtendingMessage) ProtoMessage() {}
 
 func (x *ExtendingMessage) ProtoReflect() protoreflect.Message {
 	mi := &file_cmd_protoc_gen_go_testdata_extensions_ext_ext_proto_msgTypes[2]
-	if protoimpl.UnsafeEnabled && x != nil {
+	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
 			ms.StoreMessageInfo(mi)
@@ -203,20 +196,17 @@ func (*ExtendingMessage) Descriptor() ([]byte, []int) {
 }
 
 type RepeatedGroup struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	RepeatedXGroup []string `protobuf:"bytes,319,rep,name=repeated_x_group,json=repeatedXGroup" json:"repeated_x_group,omitempty"`
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	RepeatedXGroup []string               `protobuf:"bytes,319,rep,name=repeated_x_group,json=repeatedXGroup" json:"repeated_x_group,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
 }
 
 func (x *RepeatedGroup) Reset() {
 	*x = RepeatedGroup{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_cmd_protoc_gen_go_testdata_extensions_ext_ext_proto_msgTypes[3]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
+	mi := &file_cmd_protoc_gen_go_testdata_extensions_ext_ext_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
 }
 
 func (x *RepeatedGroup) String() string {
@@ -227,7 +217,7 @@ func (*RepeatedGroup) ProtoMessage() {}
 
 func (x *RepeatedGroup) ProtoReflect() protoreflect.Message {
 	mi := &file_cmd_protoc_gen_go_testdata_extensions_ext_ext_proto_msgTypes[3]
-	if protoimpl.UnsafeEnabled && x != nil {
+	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
 			ms.StoreMessageInfo(mi)
@@ -251,19 +241,17 @@ func (x *RepeatedGroup) GetRepeatedXGroup() []string {
 
 // An extension of an extension.
 type Extendable struct {
-	state           protoimpl.MessageState
-	sizeCache       protoimpl.SizeCache
-	unknownFields   protoimpl.UnknownFields
+	state           protoimpl.MessageState `protogen:"open.v1"`
 	extensionFields protoimpl.ExtensionFields
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
 }
 
 func (x *Extendable) Reset() {
 	*x = Extendable{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_cmd_protoc_gen_go_testdata_extensions_ext_ext_proto_msgTypes[4]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
+	mi := &file_cmd_protoc_gen_go_testdata_extensions_ext_ext_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
 }
 
 func (x *Extendable) String() string {
@@ -274,7 +262,7 @@ func (*Extendable) ProtoMessage() {}
 
 func (x *Extendable) ProtoReflect() protoreflect.Message {
 	mi := &file_cmd_protoc_gen_go_testdata_extensions_ext_ext_proto_msgTypes[4]
-	if protoimpl.UnsafeEnabled && x != nil {
+	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
 			ms.StoreMessageInfo(mi)
@@ -291,18 +279,16 @@ func (*Extendable) Descriptor() ([]byte, []int) {
 
 // Message set wire format.
 type MessageSetWireFormatExtension struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
+	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *MessageSetWireFormatExtension) Reset() {
 	*x = MessageSetWireFormatExtension{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_cmd_protoc_gen_go_testdata_extensions_ext_ext_proto_msgTypes[5]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
+	mi := &file_cmd_protoc_gen_go_testdata_extensions_ext_ext_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
 }
 
 func (x *MessageSetWireFormatExtension) String() string {
@@ -313,7 +299,7 @@ func (*MessageSetWireFormatExtension) ProtoMessage() {}
 
 func (x *MessageSetWireFormatExtension) ProtoReflect() protoreflect.Message {
 	mi := &file_cmd_protoc_gen_go_testdata_extensions_ext_ext_proto_msgTypes[5]
-	if protoimpl.UnsafeEnabled && x != nil {
+	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
 			ms.StoreMessageInfo(mi)
@@ -329,18 +315,16 @@ func (*MessageSetWireFormatExtension) Descriptor() ([]byte, []int) {
 }
 
 type Message_M struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
+	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *Message_M) Reset() {
 	*x = Message_M{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_cmd_protoc_gen_go_testdata_extensions_ext_ext_proto_msgTypes[6]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
+	mi := &file_cmd_protoc_gen_go_testdata_extensions_ext_ext_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
 }
 
 func (x *Message_M) String() string {
@@ -351,7 +335,7 @@ func (*Message_M) ProtoMessage() {}
 
 func (x *Message_M) ProtoReflect() protoreflect.Message {
 	mi := &file_cmd_protoc_gen_go_testdata_extensions_ext_ext_proto_msgTypes[6]
-	if protoimpl.UnsafeEnabled && x != nil {
+	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
 			ms.StoreMessageInfo(mi)
@@ -367,18 +351,16 @@ func (*Message_M) Descriptor() ([]byte, []int) {
 }
 
 type ExtendingMessage_ExtendingMessageSubmessage struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
+	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *ExtendingMessage_ExtendingMessageSubmessage) Reset() {
 	*x = ExtendingMessage_ExtendingMessageSubmessage{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_cmd_protoc_gen_go_testdata_extensions_ext_ext_proto_msgTypes[7]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
+	mi := &file_cmd_protoc_gen_go_testdata_extensions_ext_ext_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
 }
 
 func (x *ExtendingMessage_ExtendingMessageSubmessage) String() string {
@@ -389,7 +371,7 @@ func (*ExtendingMessage_ExtendingMessageSubmessage) ProtoMessage() {}
 
 func (x *ExtendingMessage_ExtendingMessageSubmessage) ProtoReflect() protoreflect.Message {
 	mi := &file_cmd_protoc_gen_go_testdata_extensions_ext_ext_proto_msgTypes[7]
-	if protoimpl.UnsafeEnabled && x != nil {
+	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
 			ms.StoreMessageInfo(mi)
@@ -861,7 +843,7 @@ var (
 
 var File_cmd_protoc_gen_go_testdata_extensions_ext_ext_proto protoreflect.FileDescriptor
 
-var file_cmd_protoc_gen_go_testdata_extensions_ext_ext_proto_rawDesc = []byte{
+var file_cmd_protoc_gen_go_testdata_extensions_ext_ext_proto_rawDesc = string([]byte{
 	0x0a, 0x33, 0x63, 0x6d, 0x64, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x2d, 0x67, 0x65, 0x6e,
 	0x2d, 0x67, 0x6f, 0x2f, 0x74, 0x65, 0x73, 0x74, 0x64, 0x61, 0x74, 0x61, 0x2f, 0x65, 0x78, 0x74,
 	0x65, 0x6e, 0x73, 0x69, 0x6f, 0x6e, 0x73, 0x2f, 0x65, 0x78, 0x74, 0x2f, 0x65, 0x78, 0x74, 0x2e,
@@ -1180,23 +1162,23 @@ var file_cmd_protoc_gen_go_testdata_extensions_ext_ext_proto_rawDesc = []byte{
 	0x74, 0x6f, 0x63, 0x2d, 0x67, 0x65, 0x6e, 0x2d, 0x67, 0x6f, 0x2f, 0x74, 0x65, 0x73, 0x74, 0x64,
 	0x61, 0x74, 0x61, 0x2f, 0x65, 0x78, 0x74, 0x65, 0x6e, 0x73, 0x69, 0x6f, 0x6e, 0x73, 0x2f, 0x65,
 	0x78, 0x74,
-}
+})
 
 var (
 	file_cmd_protoc_gen_go_testdata_extensions_ext_ext_proto_rawDescOnce sync.Once
-	file_cmd_protoc_gen_go_testdata_extensions_ext_ext_proto_rawDescData = file_cmd_protoc_gen_go_testdata_extensions_ext_ext_proto_rawDesc
+	file_cmd_protoc_gen_go_testdata_extensions_ext_ext_proto_rawDescData []byte
 )
 
 func file_cmd_protoc_gen_go_testdata_extensions_ext_ext_proto_rawDescGZIP() []byte {
 	file_cmd_protoc_gen_go_testdata_extensions_ext_ext_proto_rawDescOnce.Do(func() {
-		file_cmd_protoc_gen_go_testdata_extensions_ext_ext_proto_rawDescData = protoimpl.X.CompressGZIP(file_cmd_protoc_gen_go_testdata_extensions_ext_ext_proto_rawDescData)
+		file_cmd_protoc_gen_go_testdata_extensions_ext_ext_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_cmd_protoc_gen_go_testdata_extensions_ext_ext_proto_rawDesc), len(file_cmd_protoc_gen_go_testdata_extensions_ext_ext_proto_rawDesc)))
 	})
 	return file_cmd_protoc_gen_go_testdata_extensions_ext_ext_proto_rawDescData
 }
 
 var file_cmd_protoc_gen_go_testdata_extensions_ext_ext_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
 var file_cmd_protoc_gen_go_testdata_extensions_ext_ext_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
-var file_cmd_protoc_gen_go_testdata_extensions_ext_ext_proto_goTypes = []interface{}{
+var file_cmd_protoc_gen_go_testdata_extensions_ext_ext_proto_goTypes = []any{
 	(Enum)(0),                             // 0: goproto.protoc.extension.ext.Enum
 	(*Message)(nil),                       // 1: goproto.protoc.extension.ext.Message
 	(*ExtensionGroup)(nil),                // 2: goproto.protoc.extension.ext.ExtensionGroup
@@ -1279,111 +1261,11 @@ func file_cmd_protoc_gen_go_testdata_extensions_ext_ext_proto_init() {
 	if File_cmd_protoc_gen_go_testdata_extensions_ext_ext_proto != nil {
 		return
 	}
-	if !protoimpl.UnsafeEnabled {
-		file_cmd_protoc_gen_go_testdata_extensions_ext_ext_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Message); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_cmd_protoc_gen_go_testdata_extensions_ext_ext_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ExtensionGroup); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_cmd_protoc_gen_go_testdata_extensions_ext_ext_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ExtendingMessage); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_cmd_protoc_gen_go_testdata_extensions_ext_ext_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*RepeatedGroup); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_cmd_protoc_gen_go_testdata_extensions_ext_ext_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Extendable); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			case 3:
-				return &v.extensionFields
-			default:
-				return nil
-			}
-		}
-		file_cmd_protoc_gen_go_testdata_extensions_ext_ext_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*MessageSetWireFormatExtension); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_cmd_protoc_gen_go_testdata_extensions_ext_ext_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Message_M); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_cmd_protoc_gen_go_testdata_extensions_ext_ext_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ExtendingMessage_ExtendingMessageSubmessage); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: file_cmd_protoc_gen_go_testdata_extensions_ext_ext_proto_rawDesc,
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_cmd_protoc_gen_go_testdata_extensions_ext_ext_proto_rawDesc), len(file_cmd_protoc_gen_go_testdata_extensions_ext_ext_proto_rawDesc)),
 			NumEnums:      1,
 			NumMessages:   8,
 			NumExtensions: 44,
@@ -1396,7 +1278,6 @@ func file_cmd_protoc_gen_go_testdata_extensions_ext_ext_proto_init() {
 		ExtensionInfos:    file_cmd_protoc_gen_go_testdata_extensions_ext_ext_proto_extTypes,
 	}.Build()
 	File_cmd_protoc_gen_go_testdata_extensions_ext_ext_proto = out.File
-	file_cmd_protoc_gen_go_testdata_extensions_ext_ext_proto_rawDesc = nil
 	file_cmd_protoc_gen_go_testdata_extensions_ext_ext_proto_goTypes = nil
 	file_cmd_protoc_gen_go_testdata_extensions_ext_ext_proto_depIdxs = nil
 }

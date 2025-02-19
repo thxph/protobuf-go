@@ -13,6 +13,7 @@ import (
 	descriptorpb "google.golang.org/protobuf/types/descriptorpb"
 	reflect "reflect"
 	sync "sync"
+	unsafe "unsafe"
 )
 
 type TopLevelEnum int32
@@ -122,19 +123,17 @@ func (TopLevelMessage_NestedEnum) EnumDescriptor() ([]byte, []int) {
 }
 
 type Extendee struct {
-	state           protoimpl.MessageState
-	sizeCache       protoimpl.SizeCache
-	unknownFields   protoimpl.UnknownFields
+	state           protoimpl.MessageState `protogen:"open.v1"`
 	extensionFields protoimpl.ExtensionFields
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
 }
 
 func (x *Extendee) Reset() {
 	*x = Extendee{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_cmd_protoc_gen_go_testdata_retention_retention_proto_msgTypes[0]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
+	mi := &file_cmd_protoc_gen_go_testdata_retention_retention_proto_msgTypes[0]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
 }
 
 func (x *Extendee) String() string {
@@ -145,7 +144,7 @@ func (*Extendee) ProtoMessage() {}
 
 func (x *Extendee) ProtoReflect() protoreflect.Message {
 	mi := &file_cmd_protoc_gen_go_testdata_retention_retention_proto_msgTypes[0]
-	if protoimpl.UnsafeEnabled && x != nil {
+	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
 			ms.StoreMessageInfo(mi)
@@ -161,25 +160,22 @@ func (*Extendee) Descriptor() ([]byte, []int) {
 }
 
 type TopLevelMessage struct {
-	state           protoimpl.MessageState
-	sizeCache       protoimpl.SizeCache
-	unknownFields   protoimpl.UnknownFields
-	extensionFields protoimpl.ExtensionFields
-
-	F *float32 `protobuf:"fixed32,1,opt,name=f" json:"f,omitempty"`
-	// Types that are assignable to O:
+	state protoimpl.MessageState `protogen:"open.v1"`
+	F     *float32               `protobuf:"fixed32,1,opt,name=f" json:"f,omitempty"`
+	// Types that are valid to be assigned to O:
 	//
 	//	*TopLevelMessage_I
-	O isTopLevelMessage_O `protobuf_oneof:"o"`
+	O               isTopLevelMessage_O `protobuf_oneof:"o"`
+	extensionFields protoimpl.ExtensionFields
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
 }
 
 func (x *TopLevelMessage) Reset() {
 	*x = TopLevelMessage{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_cmd_protoc_gen_go_testdata_retention_retention_proto_msgTypes[1]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
+	mi := &file_cmd_protoc_gen_go_testdata_retention_retention_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
 }
 
 func (x *TopLevelMessage) String() string {
@@ -190,7 +186,7 @@ func (*TopLevelMessage) ProtoMessage() {}
 
 func (x *TopLevelMessage) ProtoReflect() protoreflect.Message {
 	mi := &file_cmd_protoc_gen_go_testdata_retention_retention_proto_msgTypes[1]
-	if protoimpl.UnsafeEnabled && x != nil {
+	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
 			ms.StoreMessageInfo(mi)
@@ -212,16 +208,18 @@ func (x *TopLevelMessage) GetF() float32 {
 	return 0
 }
 
-func (m *TopLevelMessage) GetO() isTopLevelMessage_O {
-	if m != nil {
-		return m.O
+func (x *TopLevelMessage) GetO() isTopLevelMessage_O {
+	if x != nil {
+		return x.O
 	}
 	return nil
 }
 
 func (x *TopLevelMessage) GetI() int64 {
-	if x, ok := x.GetO().(*TopLevelMessage_I); ok {
-		return x.I
+	if x != nil {
+		if x, ok := x.O.(*TopLevelMessage_I); ok {
+			return x.I
+		}
 	}
 	return 0
 }
@@ -237,18 +235,16 @@ type TopLevelMessage_I struct {
 func (*TopLevelMessage_I) isTopLevelMessage_O() {}
 
 type TopLevelMessage_NestedMessage struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
+	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *TopLevelMessage_NestedMessage) Reset() {
 	*x = TopLevelMessage_NestedMessage{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_cmd_protoc_gen_go_testdata_retention_retention_proto_msgTypes[2]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
+	mi := &file_cmd_protoc_gen_go_testdata_retention_retention_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
 }
 
 func (x *TopLevelMessage_NestedMessage) String() string {
@@ -259,7 +255,7 @@ func (*TopLevelMessage_NestedMessage) ProtoMessage() {}
 
 func (x *TopLevelMessage_NestedMessage) ProtoReflect() protoreflect.Message {
 	mi := &file_cmd_protoc_gen_go_testdata_retention_retention_proto_msgTypes[2]
-	if protoimpl.UnsafeEnabled && x != nil {
+	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
 			ms.StoreMessageInfo(mi)
@@ -459,7 +455,7 @@ var (
 
 var File_cmd_protoc_gen_go_testdata_retention_retention_proto protoreflect.FileDescriptor
 
-var file_cmd_protoc_gen_go_testdata_retention_retention_proto_rawDesc = []byte{
+var file_cmd_protoc_gen_go_testdata_retention_retention_proto_rawDesc = string([]byte{
 	0x0a, 0x34, 0x63, 0x6d, 0x64, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x2d, 0x67, 0x65, 0x6e,
 	0x2d, 0x67, 0x6f, 0x2f, 0x74, 0x65, 0x73, 0x74, 0x64, 0x61, 0x74, 0x61, 0x2f, 0x72, 0x65, 0x74,
 	0x65, 0x6e, 0x74, 0x69, 0x6f, 0x6e, 0x2f, 0x72, 0x65, 0x74, 0x65, 0x6e, 0x74, 0x69, 0x6f, 0x6e,
@@ -585,23 +581,23 @@ var file_cmd_protoc_gen_go_testdata_retention_retention_proto_rawDesc = []byte{
 	0x6d, 0x64, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x2d, 0x67, 0x65, 0x6e, 0x2d, 0x67, 0x6f,
 	0x2f, 0x74, 0x65, 0x73, 0x74, 0x64, 0x61, 0x74, 0x61, 0x2f, 0x72, 0x65, 0x74, 0x65, 0x6e, 0x74,
 	0x69, 0x6f, 0x6e,
-}
+})
 
 var (
 	file_cmd_protoc_gen_go_testdata_retention_retention_proto_rawDescOnce sync.Once
-	file_cmd_protoc_gen_go_testdata_retention_retention_proto_rawDescData = file_cmd_protoc_gen_go_testdata_retention_retention_proto_rawDesc
+	file_cmd_protoc_gen_go_testdata_retention_retention_proto_rawDescData []byte
 )
 
 func file_cmd_protoc_gen_go_testdata_retention_retention_proto_rawDescGZIP() []byte {
 	file_cmd_protoc_gen_go_testdata_retention_retention_proto_rawDescOnce.Do(func() {
-		file_cmd_protoc_gen_go_testdata_retention_retention_proto_rawDescData = protoimpl.X.CompressGZIP(file_cmd_protoc_gen_go_testdata_retention_retention_proto_rawDescData)
+		file_cmd_protoc_gen_go_testdata_retention_retention_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_cmd_protoc_gen_go_testdata_retention_retention_proto_rawDesc), len(file_cmd_protoc_gen_go_testdata_retention_retention_proto_rawDesc)))
 	})
 	return file_cmd_protoc_gen_go_testdata_retention_retention_proto_rawDescData
 }
 
 var file_cmd_protoc_gen_go_testdata_retention_retention_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
 var file_cmd_protoc_gen_go_testdata_retention_retention_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
-var file_cmd_protoc_gen_go_testdata_retention_retention_proto_goTypes = []interface{}{
+var file_cmd_protoc_gen_go_testdata_retention_retention_proto_goTypes = []any{
 	(TopLevelEnum)(0),                          // 0: testretention.TopLevelEnum
 	(TopLevelMessage_NestedEnum)(0),            // 1: testretention.TopLevelMessage.NestedEnum
 	(*Extendee)(nil),                           // 2: testretention.Extendee
@@ -657,56 +653,14 @@ func file_cmd_protoc_gen_go_testdata_retention_retention_proto_init() {
 		return
 	}
 	file_cmd_protoc_gen_go_testdata_retention_options_message_proto_init()
-	if !protoimpl.UnsafeEnabled {
-		file_cmd_protoc_gen_go_testdata_retention_retention_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Extendee); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			case 3:
-				return &v.extensionFields
-			default:
-				return nil
-			}
-		}
-		file_cmd_protoc_gen_go_testdata_retention_retention_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*TopLevelMessage); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			case 3:
-				return &v.extensionFields
-			default:
-				return nil
-			}
-		}
-		file_cmd_protoc_gen_go_testdata_retention_retention_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*TopLevelMessage_NestedMessage); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-	}
-	file_cmd_protoc_gen_go_testdata_retention_retention_proto_msgTypes[1].OneofWrappers = []interface{}{
+	file_cmd_protoc_gen_go_testdata_retention_retention_proto_msgTypes[1].OneofWrappers = []any{
 		(*TopLevelMessage_I)(nil),
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: file_cmd_protoc_gen_go_testdata_retention_retention_proto_rawDesc,
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_cmd_protoc_gen_go_testdata_retention_retention_proto_rawDesc), len(file_cmd_protoc_gen_go_testdata_retention_retention_proto_rawDesc)),
 			NumEnums:      2,
 			NumMessages:   3,
 			NumExtensions: 14,
@@ -719,7 +673,6 @@ func file_cmd_protoc_gen_go_testdata_retention_retention_proto_init() {
 		ExtensionInfos:    file_cmd_protoc_gen_go_testdata_retention_retention_proto_extTypes,
 	}.Build()
 	File_cmd_protoc_gen_go_testdata_retention_retention_proto = out.File
-	file_cmd_protoc_gen_go_testdata_retention_retention_proto_rawDesc = nil
 	file_cmd_protoc_gen_go_testdata_retention_retention_proto_goTypes = nil
 	file_cmd_protoc_gen_go_testdata_retention_retention_proto_depIdxs = nil
 }

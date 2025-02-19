@@ -13,24 +13,22 @@ import (
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
 	sync "sync"
+	unsafe "unsafe"
 )
 
 type Local struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	M             *sub.M                 `protobuf:"bytes,1,opt,name=m" json:"m,omitempty"`
+	E             *sub.E                 `protobuf:"varint,2,opt,name=e,enum=goproto.protoc.import_public.sub.E" json:"e,omitempty"`
 	unknownFields protoimpl.UnknownFields
-
-	M *sub.M `protobuf:"bytes,1,opt,name=m" json:"m,omitempty"`
-	E *sub.E `protobuf:"varint,2,opt,name=e,enum=goproto.protoc.import_public.sub.E" json:"e,omitempty"`
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *Local) Reset() {
 	*x = Local{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_cmd_protoc_gen_go_testdata_import_public_b_proto_msgTypes[0]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
+	mi := &file_cmd_protoc_gen_go_testdata_import_public_b_proto_msgTypes[0]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
 }
 
 func (x *Local) String() string {
@@ -41,7 +39,7 @@ func (*Local) ProtoMessage() {}
 
 func (x *Local) ProtoReflect() protoreflect.Message {
 	mi := &file_cmd_protoc_gen_go_testdata_import_public_b_proto_msgTypes[0]
-	if protoimpl.UnsafeEnabled && x != nil {
+	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
 			ms.StoreMessageInfo(mi)
@@ -72,7 +70,7 @@ func (x *Local) GetE() sub.E {
 
 var File_cmd_protoc_gen_go_testdata_import_public_b_proto protoreflect.FileDescriptor
 
-var file_cmd_protoc_gen_go_testdata_import_public_b_proto_rawDesc = []byte{
+var file_cmd_protoc_gen_go_testdata_import_public_b_proto_rawDesc = string([]byte{
 	0x0a, 0x30, 0x63, 0x6d, 0x64, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x2d, 0x67, 0x65, 0x6e,
 	0x2d, 0x67, 0x6f, 0x2f, 0x74, 0x65, 0x73, 0x74, 0x64, 0x61, 0x74, 0x61, 0x2f, 0x69, 0x6d, 0x70,
 	0x6f, 0x72, 0x74, 0x5f, 0x70, 0x75, 0x62, 0x6c, 0x69, 0x63, 0x2f, 0x62, 0x2e, 0x70, 0x72, 0x6f,
@@ -93,22 +91,22 @@ var file_cmd_protoc_gen_go_testdata_import_public_b_proto_rawDesc = []byte{
 	0x62, 0x75, 0x66, 0x2f, 0x63, 0x6d, 0x64, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x2d, 0x67,
 	0x65, 0x6e, 0x2d, 0x67, 0x6f, 0x2f, 0x74, 0x65, 0x73, 0x74, 0x64, 0x61, 0x74, 0x61, 0x2f, 0x69,
 	0x6d, 0x70, 0x6f, 0x72, 0x74, 0x5f, 0x70, 0x75, 0x62, 0x6c, 0x69, 0x63,
-}
+})
 
 var (
 	file_cmd_protoc_gen_go_testdata_import_public_b_proto_rawDescOnce sync.Once
-	file_cmd_protoc_gen_go_testdata_import_public_b_proto_rawDescData = file_cmd_protoc_gen_go_testdata_import_public_b_proto_rawDesc
+	file_cmd_protoc_gen_go_testdata_import_public_b_proto_rawDescData []byte
 )
 
 func file_cmd_protoc_gen_go_testdata_import_public_b_proto_rawDescGZIP() []byte {
 	file_cmd_protoc_gen_go_testdata_import_public_b_proto_rawDescOnce.Do(func() {
-		file_cmd_protoc_gen_go_testdata_import_public_b_proto_rawDescData = protoimpl.X.CompressGZIP(file_cmd_protoc_gen_go_testdata_import_public_b_proto_rawDescData)
+		file_cmd_protoc_gen_go_testdata_import_public_b_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_cmd_protoc_gen_go_testdata_import_public_b_proto_rawDesc), len(file_cmd_protoc_gen_go_testdata_import_public_b_proto_rawDesc)))
 	})
 	return file_cmd_protoc_gen_go_testdata_import_public_b_proto_rawDescData
 }
 
 var file_cmd_protoc_gen_go_testdata_import_public_b_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
-var file_cmd_protoc_gen_go_testdata_import_public_b_proto_goTypes = []interface{}{
+var file_cmd_protoc_gen_go_testdata_import_public_b_proto_goTypes = []any{
 	(*Local)(nil), // 0: goproto.protoc.import_public.Local
 	(*sub.M)(nil), // 1: goproto.protoc.import_public.sub.M
 	(sub.E)(0),    // 2: goproto.protoc.import_public.sub.E
@@ -128,25 +126,11 @@ func file_cmd_protoc_gen_go_testdata_import_public_b_proto_init() {
 	if File_cmd_protoc_gen_go_testdata_import_public_b_proto != nil {
 		return
 	}
-	if !protoimpl.UnsafeEnabled {
-		file_cmd_protoc_gen_go_testdata_import_public_b_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Local); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: file_cmd_protoc_gen_go_testdata_import_public_b_proto_rawDesc,
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_cmd_protoc_gen_go_testdata_import_public_b_proto_rawDesc), len(file_cmd_protoc_gen_go_testdata_import_public_b_proto_rawDesc)),
 			NumEnums:      0,
 			NumMessages:   1,
 			NumExtensions: 0,
@@ -157,7 +141,6 @@ func file_cmd_protoc_gen_go_testdata_import_public_b_proto_init() {
 		MessageInfos:      file_cmd_protoc_gen_go_testdata_import_public_b_proto_msgTypes,
 	}.Build()
 	File_cmd_protoc_gen_go_testdata_import_public_b_proto = out.File
-	file_cmd_protoc_gen_go_testdata_import_public_b_proto_rawDesc = nil
 	file_cmd_protoc_gen_go_testdata_import_public_b_proto_goTypes = nil
 	file_cmd_protoc_gen_go_testdata_import_public_b_proto_depIdxs = nil
 }

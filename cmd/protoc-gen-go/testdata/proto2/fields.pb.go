@@ -13,6 +13,7 @@ import (
 	math "math"
 	reflect "reflect"
 	sync "sync"
+	unsafe "unsafe"
 )
 
 type FieldTestMessage_Enum int32
@@ -72,10 +73,7 @@ func (FieldTestMessage_Enum) EnumDescriptor() ([]byte, []int) {
 }
 
 type FieldTestMessage struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
+	state               protoimpl.MessageState               `protogen:"open.v1"`
 	OptionalBool        *bool                                `protobuf:"varint,1,opt,name=optional_bool,json=optionalBool" json:"optional_bool,omitempty"`
 	OptionalEnum        *FieldTestMessage_Enum               `protobuf:"varint,2,opt,name=optional_enum,json=optionalEnum,enum=goproto.protoc.proto2.FieldTestMessage_Enum" json:"optional_enum,omitempty"`
 	OptionalInt32       *int32                               `protobuf:"varint,3,opt,name=optional_int32,json=optionalInt32" json:"optional_int32,omitempty"`
@@ -157,7 +155,7 @@ type FieldTestMessage struct {
 	MapInt32Int64       map[int32]int64                      `protobuf:"bytes,500,rep,name=map_int32_int64,json=mapInt32Int64" json:"map_int32_int64,omitempty" protobuf_key:"varint,1,opt,name=key" protobuf_val:"varint,2,opt,name=value"`
 	MapStringMessage    map[string]*FieldTestMessage_Message `protobuf:"bytes,501,rep,name=map_string_message,json=mapStringMessage" json:"map_string_message,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
 	MapFixed64Enum      map[uint64]FieldTestMessage_Enum     `protobuf:"bytes,502,rep,name=map_fixed64_enum,json=mapFixed64Enum" json:"map_fixed64_enum,omitempty" protobuf_key:"fixed64,1,opt,name=key" protobuf_val:"varint,2,opt,name=value,enum=goproto.protoc.proto2.FieldTestMessage_Enum"`
-	// Types that are assignable to OneofField:
+	// Types that are valid to be assigned to OneofField:
 	//
 	//	*FieldTestMessage_OneofBool
 	//	*FieldTestMessage_OneofEnum
@@ -179,11 +177,13 @@ type FieldTestMessage struct {
 	//	*FieldTestMessage_Oneofgroup
 	//	*FieldTestMessage_OneofLargestTag
 	OneofField isFieldTestMessage_OneofField `protobuf_oneof:"oneof_field"`
-	// Types that are assignable to OneofTwo:
+	// Types that are valid to be assigned to OneofTwo:
 	//
 	//	*FieldTestMessage_OneofTwo_1
 	//	*FieldTestMessage_OneofTwo_2
-	OneofTwo isFieldTestMessage_OneofTwo `protobuf_oneof:"oneof_two"`
+	OneofTwo      isFieldTestMessage_OneofTwo `protobuf_oneof:"oneof_two"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 // Default values for FieldTestMessage fields.
@@ -220,11 +220,9 @@ var (
 
 func (x *FieldTestMessage) Reset() {
 	*x = FieldTestMessage{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_cmd_protoc_gen_go_testdata_proto2_fields_proto_msgTypes[0]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
+	mi := &file_cmd_protoc_gen_go_testdata_proto2_fields_proto_msgTypes[0]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
 }
 
 func (x *FieldTestMessage) String() string {
@@ -235,7 +233,7 @@ func (*FieldTestMessage) ProtoMessage() {}
 
 func (x *FieldTestMessage) ProtoReflect() protoreflect.Message {
 	mi := &file_cmd_protoc_gen_go_testdata_proto2_fields_proto_msgTypes[0]
-	if protoimpl.UnsafeEnabled && x != nil {
+	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
 			ms.StoreMessageInfo(mi)
@@ -817,163 +815,205 @@ func (x *FieldTestMessage) GetMapFixed64Enum() map[uint64]FieldTestMessage_Enum 
 	return nil
 }
 
-func (m *FieldTestMessage) GetOneofField() isFieldTestMessage_OneofField {
-	if m != nil {
-		return m.OneofField
+func (x *FieldTestMessage) GetOneofField() isFieldTestMessage_OneofField {
+	if x != nil {
+		return x.OneofField
 	}
 	return nil
 }
 
 func (x *FieldTestMessage) GetOneofBool() bool {
-	if x, ok := x.GetOneofField().(*FieldTestMessage_OneofBool); ok {
-		return x.OneofBool
+	if x != nil {
+		if x, ok := x.OneofField.(*FieldTestMessage_OneofBool); ok {
+			return x.OneofBool
+		}
 	}
 	return false
 }
 
 func (x *FieldTestMessage) GetOneofEnum() FieldTestMessage_Enum {
-	if x, ok := x.GetOneofField().(*FieldTestMessage_OneofEnum); ok {
-		return x.OneofEnum
+	if x != nil {
+		if x, ok := x.OneofField.(*FieldTestMessage_OneofEnum); ok {
+			return x.OneofEnum
+		}
 	}
 	return FieldTestMessage_ZERO
 }
 
 func (x *FieldTestMessage) GetOneofInt32() int32 {
-	if x, ok := x.GetOneofField().(*FieldTestMessage_OneofInt32); ok {
-		return x.OneofInt32
+	if x != nil {
+		if x, ok := x.OneofField.(*FieldTestMessage_OneofInt32); ok {
+			return x.OneofInt32
+		}
 	}
 	return 0
 }
 
 func (x *FieldTestMessage) GetOneofSint32() int32 {
-	if x, ok := x.GetOneofField().(*FieldTestMessage_OneofSint32); ok {
-		return x.OneofSint32
+	if x != nil {
+		if x, ok := x.OneofField.(*FieldTestMessage_OneofSint32); ok {
+			return x.OneofSint32
+		}
 	}
 	return 0
 }
 
 func (x *FieldTestMessage) GetOneofUint32() uint32 {
-	if x, ok := x.GetOneofField().(*FieldTestMessage_OneofUint32); ok {
-		return x.OneofUint32
+	if x != nil {
+		if x, ok := x.OneofField.(*FieldTestMessage_OneofUint32); ok {
+			return x.OneofUint32
+		}
 	}
 	return 0
 }
 
 func (x *FieldTestMessage) GetOneofInt64() int64 {
-	if x, ok := x.GetOneofField().(*FieldTestMessage_OneofInt64); ok {
-		return x.OneofInt64
+	if x != nil {
+		if x, ok := x.OneofField.(*FieldTestMessage_OneofInt64); ok {
+			return x.OneofInt64
+		}
 	}
 	return 0
 }
 
 func (x *FieldTestMessage) GetOneofSint64() int64 {
-	if x, ok := x.GetOneofField().(*FieldTestMessage_OneofSint64); ok {
-		return x.OneofSint64
+	if x != nil {
+		if x, ok := x.OneofField.(*FieldTestMessage_OneofSint64); ok {
+			return x.OneofSint64
+		}
 	}
 	return 0
 }
 
 func (x *FieldTestMessage) GetOneofUint64() uint64 {
-	if x, ok := x.GetOneofField().(*FieldTestMessage_OneofUint64); ok {
-		return x.OneofUint64
+	if x != nil {
+		if x, ok := x.OneofField.(*FieldTestMessage_OneofUint64); ok {
+			return x.OneofUint64
+		}
 	}
 	return 0
 }
 
 func (x *FieldTestMessage) GetOneofSfixed32() int32 {
-	if x, ok := x.GetOneofField().(*FieldTestMessage_OneofSfixed32); ok {
-		return x.OneofSfixed32
+	if x != nil {
+		if x, ok := x.OneofField.(*FieldTestMessage_OneofSfixed32); ok {
+			return x.OneofSfixed32
+		}
 	}
 	return 0
 }
 
 func (x *FieldTestMessage) GetOneofFixed32() uint32 {
-	if x, ok := x.GetOneofField().(*FieldTestMessage_OneofFixed32); ok {
-		return x.OneofFixed32
+	if x != nil {
+		if x, ok := x.OneofField.(*FieldTestMessage_OneofFixed32); ok {
+			return x.OneofFixed32
+		}
 	}
 	return 0
 }
 
 func (x *FieldTestMessage) GetOneofFloat() float32 {
-	if x, ok := x.GetOneofField().(*FieldTestMessage_OneofFloat); ok {
-		return x.OneofFloat
+	if x != nil {
+		if x, ok := x.OneofField.(*FieldTestMessage_OneofFloat); ok {
+			return x.OneofFloat
+		}
 	}
 	return 0
 }
 
 func (x *FieldTestMessage) GetOneofSfixed64() int64 {
-	if x, ok := x.GetOneofField().(*FieldTestMessage_OneofSfixed64); ok {
-		return x.OneofSfixed64
+	if x != nil {
+		if x, ok := x.OneofField.(*FieldTestMessage_OneofSfixed64); ok {
+			return x.OneofSfixed64
+		}
 	}
 	return 0
 }
 
 func (x *FieldTestMessage) GetOneofFixed64() uint64 {
-	if x, ok := x.GetOneofField().(*FieldTestMessage_OneofFixed64); ok {
-		return x.OneofFixed64
+	if x != nil {
+		if x, ok := x.OneofField.(*FieldTestMessage_OneofFixed64); ok {
+			return x.OneofFixed64
+		}
 	}
 	return 0
 }
 
 func (x *FieldTestMessage) GetOneofDouble() float64 {
-	if x, ok := x.GetOneofField().(*FieldTestMessage_OneofDouble); ok {
-		return x.OneofDouble
+	if x != nil {
+		if x, ok := x.OneofField.(*FieldTestMessage_OneofDouble); ok {
+			return x.OneofDouble
+		}
 	}
 	return 0
 }
 
 func (x *FieldTestMessage) GetOneofString() string {
-	if x, ok := x.GetOneofField().(*FieldTestMessage_OneofString); ok {
-		return x.OneofString
+	if x != nil {
+		if x, ok := x.OneofField.(*FieldTestMessage_OneofString); ok {
+			return x.OneofString
+		}
 	}
 	return ""
 }
 
 func (x *FieldTestMessage) GetOneofBytes() []byte {
-	if x, ok := x.GetOneofField().(*FieldTestMessage_OneofBytes); ok {
-		return x.OneofBytes
+	if x != nil {
+		if x, ok := x.OneofField.(*FieldTestMessage_OneofBytes); ok {
+			return x.OneofBytes
+		}
 	}
 	return nil
 }
 
 func (x *FieldTestMessage) GetOneof_Message() *FieldTestMessage_Message {
-	if x, ok := x.GetOneofField().(*FieldTestMessage_Oneof_Message); ok {
-		return x.Oneof_Message
+	if x != nil {
+		if x, ok := x.OneofField.(*FieldTestMessage_Oneof_Message); ok {
+			return x.Oneof_Message
+		}
 	}
 	return nil
 }
 
 func (x *FieldTestMessage) GetOneofgroup() *FieldTestMessage_OneofGroup {
-	if x, ok := x.GetOneofField().(*FieldTestMessage_Oneofgroup); ok {
-		return x.Oneofgroup
+	if x != nil {
+		if x, ok := x.OneofField.(*FieldTestMessage_Oneofgroup); ok {
+			return x.Oneofgroup
+		}
 	}
 	return nil
 }
 
 func (x *FieldTestMessage) GetOneofLargestTag() int32 {
-	if x, ok := x.GetOneofField().(*FieldTestMessage_OneofLargestTag); ok {
-		return x.OneofLargestTag
+	if x != nil {
+		if x, ok := x.OneofField.(*FieldTestMessage_OneofLargestTag); ok {
+			return x.OneofLargestTag
+		}
 	}
 	return 0
 }
 
-func (m *FieldTestMessage) GetOneofTwo() isFieldTestMessage_OneofTwo {
-	if m != nil {
-		return m.OneofTwo
+func (x *FieldTestMessage) GetOneofTwo() isFieldTestMessage_OneofTwo {
+	if x != nil {
+		return x.OneofTwo
 	}
 	return nil
 }
 
 func (x *FieldTestMessage) GetOneofTwo_1() int32 {
-	if x, ok := x.GetOneofTwo().(*FieldTestMessage_OneofTwo_1); ok {
-		return x.OneofTwo_1
+	if x != nil {
+		if x, ok := x.OneofTwo.(*FieldTestMessage_OneofTwo_1); ok {
+			return x.OneofTwo_1
+		}
 	}
 	return 0
 }
 
 func (x *FieldTestMessage) GetOneofTwo_2() int64 {
-	if x, ok := x.GetOneofTwo().(*FieldTestMessage_OneofTwo_2); ok {
-		return x.OneofTwo_2
+	if x != nil {
+		if x, ok := x.OneofTwo.(*FieldTestMessage_OneofTwo_2); ok {
+			return x.OneofTwo_2
+		}
 	}
 	return 0
 }
@@ -1113,20 +1153,17 @@ func (*FieldTestMessage_OneofTwo_1) isFieldTestMessage_OneofTwo() {}
 func (*FieldTestMessage_OneofTwo_2) isFieldTestMessage_OneofTwo() {}
 
 type FieldTestMessage_OptionalGroup struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	OptionalGroup *string                `protobuf:"bytes,19,opt,name=optional_group,json=optionalGroup" json:"optional_group,omitempty"`
 	unknownFields protoimpl.UnknownFields
-
-	OptionalGroup *string `protobuf:"bytes,19,opt,name=optional_group,json=optionalGroup" json:"optional_group,omitempty"`
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *FieldTestMessage_OptionalGroup) Reset() {
 	*x = FieldTestMessage_OptionalGroup{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_cmd_protoc_gen_go_testdata_proto2_fields_proto_msgTypes[1]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
+	mi := &file_cmd_protoc_gen_go_testdata_proto2_fields_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
 }
 
 func (x *FieldTestMessage_OptionalGroup) String() string {
@@ -1137,7 +1174,7 @@ func (*FieldTestMessage_OptionalGroup) ProtoMessage() {}
 
 func (x *FieldTestMessage_OptionalGroup) ProtoReflect() protoreflect.Message {
 	mi := &file_cmd_protoc_gen_go_testdata_proto2_fields_proto_msgTypes[1]
-	if protoimpl.UnsafeEnabled && x != nil {
+	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
 			ms.StoreMessageInfo(mi)
@@ -1160,20 +1197,17 @@ func (x *FieldTestMessage_OptionalGroup) GetOptionalGroup() string {
 }
 
 type FieldTestMessage_RequiredGroup struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	RequiredGroup *string                `protobuf:"bytes,119,req,name=required_group,json=requiredGroup" json:"required_group,omitempty"`
 	unknownFields protoimpl.UnknownFields
-
-	RequiredGroup *string `protobuf:"bytes,119,req,name=required_group,json=requiredGroup" json:"required_group,omitempty"`
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *FieldTestMessage_RequiredGroup) Reset() {
 	*x = FieldTestMessage_RequiredGroup{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_cmd_protoc_gen_go_testdata_proto2_fields_proto_msgTypes[2]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
+	mi := &file_cmd_protoc_gen_go_testdata_proto2_fields_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
 }
 
 func (x *FieldTestMessage_RequiredGroup) String() string {
@@ -1184,7 +1218,7 @@ func (*FieldTestMessage_RequiredGroup) ProtoMessage() {}
 
 func (x *FieldTestMessage_RequiredGroup) ProtoReflect() protoreflect.Message {
 	mi := &file_cmd_protoc_gen_go_testdata_proto2_fields_proto_msgTypes[2]
-	if protoimpl.UnsafeEnabled && x != nil {
+	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
 			ms.StoreMessageInfo(mi)
@@ -1207,20 +1241,17 @@ func (x *FieldTestMessage_RequiredGroup) GetRequiredGroup() string {
 }
 
 type FieldTestMessage_RepeatedGroup struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	RepeatedGroup []string               `protobuf:"bytes,219,rep,name=repeated_group,json=repeatedGroup" json:"repeated_group,omitempty"`
 	unknownFields protoimpl.UnknownFields
-
-	RepeatedGroup []string `protobuf:"bytes,219,rep,name=repeated_group,json=repeatedGroup" json:"repeated_group,omitempty"`
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *FieldTestMessage_RepeatedGroup) Reset() {
 	*x = FieldTestMessage_RepeatedGroup{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_cmd_protoc_gen_go_testdata_proto2_fields_proto_msgTypes[3]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
+	mi := &file_cmd_protoc_gen_go_testdata_proto2_fields_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
 }
 
 func (x *FieldTestMessage_RepeatedGroup) String() string {
@@ -1231,7 +1262,7 @@ func (*FieldTestMessage_RepeatedGroup) ProtoMessage() {}
 
 func (x *FieldTestMessage_RepeatedGroup) ProtoReflect() protoreflect.Message {
 	mi := &file_cmd_protoc_gen_go_testdata_proto2_fields_proto_msgTypes[3]
-	if protoimpl.UnsafeEnabled && x != nil {
+	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
 			ms.StoreMessageInfo(mi)
@@ -1254,20 +1285,17 @@ func (x *FieldTestMessage_RepeatedGroup) GetRepeatedGroup() []string {
 }
 
 type FieldTestMessage_OneofGroup struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	OneofGroupField *string `protobuf:"bytes,619,opt,name=oneof_group_field,json=oneofGroupField" json:"oneof_group_field,omitempty"`
+	state           protoimpl.MessageState `protogen:"open.v1"`
+	OneofGroupField *string                `protobuf:"bytes,619,opt,name=oneof_group_field,json=oneofGroupField" json:"oneof_group_field,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
 }
 
 func (x *FieldTestMessage_OneofGroup) Reset() {
 	*x = FieldTestMessage_OneofGroup{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_cmd_protoc_gen_go_testdata_proto2_fields_proto_msgTypes[7]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
+	mi := &file_cmd_protoc_gen_go_testdata_proto2_fields_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
 }
 
 func (x *FieldTestMessage_OneofGroup) String() string {
@@ -1278,7 +1306,7 @@ func (*FieldTestMessage_OneofGroup) ProtoMessage() {}
 
 func (x *FieldTestMessage_OneofGroup) ProtoReflect() protoreflect.Message {
 	mi := &file_cmd_protoc_gen_go_testdata_proto2_fields_proto_msgTypes[7]
-	if protoimpl.UnsafeEnabled && x != nil {
+	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
 			ms.StoreMessageInfo(mi)
@@ -1301,18 +1329,16 @@ func (x *FieldTestMessage_OneofGroup) GetOneofGroupField() string {
 }
 
 type FieldTestMessage_Message struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
+	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *FieldTestMessage_Message) Reset() {
 	*x = FieldTestMessage_Message{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_cmd_protoc_gen_go_testdata_proto2_fields_proto_msgTypes[8]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
+	mi := &file_cmd_protoc_gen_go_testdata_proto2_fields_proto_msgTypes[8]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
 }
 
 func (x *FieldTestMessage_Message) String() string {
@@ -1323,7 +1349,7 @@ func (*FieldTestMessage_Message) ProtoMessage() {}
 
 func (x *FieldTestMessage_Message) ProtoReflect() protoreflect.Message {
 	mi := &file_cmd_protoc_gen_go_testdata_proto2_fields_proto_msgTypes[8]
-	if protoimpl.UnsafeEnabled && x != nil {
+	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
 			ms.StoreMessageInfo(mi)
@@ -1340,7 +1366,7 @@ func (*FieldTestMessage_Message) Descriptor() ([]byte, []int) {
 
 var File_cmd_protoc_gen_go_testdata_proto2_fields_proto protoreflect.FileDescriptor
 
-var file_cmd_protoc_gen_go_testdata_proto2_fields_proto_rawDesc = []byte{
+var file_cmd_protoc_gen_go_testdata_proto2_fields_proto_rawDesc = string([]byte{
 	0x0a, 0x2e, 0x63, 0x6d, 0x64, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x2d, 0x67, 0x65, 0x6e,
 	0x2d, 0x67, 0x6f, 0x2f, 0x74, 0x65, 0x73, 0x74, 0x64, 0x61, 0x74, 0x61, 0x2f, 0x70, 0x72, 0x6f,
 	0x74, 0x6f, 0x32, 0x2f, 0x66, 0x69, 0x65, 0x6c, 0x64, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f,
@@ -1713,23 +1739,23 @@ var file_cmd_protoc_gen_go_testdata_proto2_fields_proto_rawDesc = []byte{
 	0x63, 0x6d, 0x64, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x2d, 0x67, 0x65, 0x6e, 0x2d, 0x67,
 	0x6f, 0x2f, 0x74, 0x65, 0x73, 0x74, 0x64, 0x61, 0x74, 0x61, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f,
 	0x32,
-}
+})
 
 var (
 	file_cmd_protoc_gen_go_testdata_proto2_fields_proto_rawDescOnce sync.Once
-	file_cmd_protoc_gen_go_testdata_proto2_fields_proto_rawDescData = file_cmd_protoc_gen_go_testdata_proto2_fields_proto_rawDesc
+	file_cmd_protoc_gen_go_testdata_proto2_fields_proto_rawDescData []byte
 )
 
 func file_cmd_protoc_gen_go_testdata_proto2_fields_proto_rawDescGZIP() []byte {
 	file_cmd_protoc_gen_go_testdata_proto2_fields_proto_rawDescOnce.Do(func() {
-		file_cmd_protoc_gen_go_testdata_proto2_fields_proto_rawDescData = protoimpl.X.CompressGZIP(file_cmd_protoc_gen_go_testdata_proto2_fields_proto_rawDescData)
+		file_cmd_protoc_gen_go_testdata_proto2_fields_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_cmd_protoc_gen_go_testdata_proto2_fields_proto_rawDesc), len(file_cmd_protoc_gen_go_testdata_proto2_fields_proto_rawDesc)))
 	})
 	return file_cmd_protoc_gen_go_testdata_proto2_fields_proto_rawDescData
 }
 
 var file_cmd_protoc_gen_go_testdata_proto2_fields_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
 var file_cmd_protoc_gen_go_testdata_proto2_fields_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
-var file_cmd_protoc_gen_go_testdata_proto2_fields_proto_goTypes = []interface{}{
+var file_cmd_protoc_gen_go_testdata_proto2_fields_proto_goTypes = []any{
 	(FieldTestMessage_Enum)(0),             // 0: goproto.protoc.proto2.FieldTestMessage.Enum
 	(*FieldTestMessage)(nil),               // 1: goproto.protoc.proto2.FieldTestMessage
 	(*FieldTestMessage_OptionalGroup)(nil), // 2: goproto.protoc.proto2.FieldTestMessage.OptionalGroup
@@ -1772,81 +1798,7 @@ func file_cmd_protoc_gen_go_testdata_proto2_fields_proto_init() {
 	if File_cmd_protoc_gen_go_testdata_proto2_fields_proto != nil {
 		return
 	}
-	if !protoimpl.UnsafeEnabled {
-		file_cmd_protoc_gen_go_testdata_proto2_fields_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*FieldTestMessage); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_cmd_protoc_gen_go_testdata_proto2_fields_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*FieldTestMessage_OptionalGroup); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_cmd_protoc_gen_go_testdata_proto2_fields_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*FieldTestMessage_RequiredGroup); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_cmd_protoc_gen_go_testdata_proto2_fields_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*FieldTestMessage_RepeatedGroup); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_cmd_protoc_gen_go_testdata_proto2_fields_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*FieldTestMessage_OneofGroup); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_cmd_protoc_gen_go_testdata_proto2_fields_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*FieldTestMessage_Message); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-	}
-	file_cmd_protoc_gen_go_testdata_proto2_fields_proto_msgTypes[0].OneofWrappers = []interface{}{
+	file_cmd_protoc_gen_go_testdata_proto2_fields_proto_msgTypes[0].OneofWrappers = []any{
 		(*FieldTestMessage_OneofBool)(nil),
 		(*FieldTestMessage_OneofEnum)(nil),
 		(*FieldTestMessage_OneofInt32)(nil),
@@ -1873,7 +1825,7 @@ func file_cmd_protoc_gen_go_testdata_proto2_fields_proto_init() {
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: file_cmd_protoc_gen_go_testdata_proto2_fields_proto_rawDesc,
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_cmd_protoc_gen_go_testdata_proto2_fields_proto_rawDesc), len(file_cmd_protoc_gen_go_testdata_proto2_fields_proto_rawDesc)),
 			NumEnums:      1,
 			NumMessages:   9,
 			NumExtensions: 0,
@@ -1885,7 +1837,6 @@ func file_cmd_protoc_gen_go_testdata_proto2_fields_proto_init() {
 		MessageInfos:      file_cmd_protoc_gen_go_testdata_proto2_fields_proto_msgTypes,
 	}.Build()
 	File_cmd_protoc_gen_go_testdata_proto2_fields_proto = out.File
-	file_cmd_protoc_gen_go_testdata_proto2_fields_proto_rawDesc = nil
 	file_cmd_protoc_gen_go_testdata_proto2_fields_proto_goTypes = nil
 	file_cmd_protoc_gen_go_testdata_proto2_fields_proto_depIdxs = nil
 }

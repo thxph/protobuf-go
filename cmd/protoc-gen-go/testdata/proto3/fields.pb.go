@@ -12,6 +12,7 @@ import (
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
 	sync "sync"
+	unsafe "unsafe"
 )
 
 type FieldTestMessage_Enum int32
@@ -58,10 +59,7 @@ func (FieldTestMessage_Enum) EnumDescriptor() ([]byte, []int) {
 }
 
 type FieldTestMessage struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
+	state            protoimpl.MessageState               `protogen:"open.v1"`
 	OptionalBool     string                               `protobuf:"bytes,1,opt,name=optional_bool,json=optionalBool,proto3" json:"optional_bool,omitempty"`
 	OptionalEnum     FieldTestMessage_Enum                `protobuf:"varint,2,opt,name=optional_enum,json=optionalEnum,proto3,enum=goproto.protoc.proto3.FieldTestMessage_Enum" json:"optional_enum,omitempty"`
 	OptionalInt32    int32                                `protobuf:"varint,3,opt,name=optional_int32,json=optionalInt32,proto3" json:"optional_int32,omitempty"`
@@ -96,18 +94,18 @@ type FieldTestMessage struct {
 	RepeatedString   []string                             `protobuf:"bytes,215,rep,name=repeated_string,json=repeatedString,proto3" json:"repeated_string,omitempty"`
 	RepeatedBytes    [][]byte                             `protobuf:"bytes,216,rep,name=repeated_bytes,json=repeatedBytes,proto3" json:"repeated_bytes,omitempty"`
 	Repeated_Message []*FieldTestMessage_Message          `protobuf:"bytes,217,rep,name=repeated_Message,json=repeatedMessage,proto3" json:"repeated_Message,omitempty"`
-	MapInt32Int64    map[int32]int64                      `protobuf:"bytes,500,rep,name=map_int32_int64,json=mapInt32Int64,proto3" json:"map_int32_int64,omitempty" protobuf_key:"varint,1,opt,name=key,proto3" protobuf_val:"varint,2,opt,name=value,proto3"`
-	MapStringMessage map[string]*FieldTestMessage_Message `protobuf:"bytes,501,rep,name=map_string_message,json=mapStringMessage,proto3" json:"map_string_message,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
-	MapFixed64Enum   map[uint64]FieldTestMessage_Enum     `protobuf:"bytes,502,rep,name=map_fixed64_enum,json=mapFixed64Enum,proto3" json:"map_fixed64_enum,omitempty" protobuf_key:"fixed64,1,opt,name=key,proto3" protobuf_val:"varint,2,opt,name=value,proto3,enum=goproto.protoc.proto3.FieldTestMessage_Enum"`
+	MapInt32Int64    map[int32]int64                      `protobuf:"bytes,500,rep,name=map_int32_int64,json=mapInt32Int64,proto3" json:"map_int32_int64,omitempty" protobuf_key:"varint,1,opt,name=key" protobuf_val:"varint,2,opt,name=value"`
+	MapStringMessage map[string]*FieldTestMessage_Message `protobuf:"bytes,501,rep,name=map_string_message,json=mapStringMessage,proto3" json:"map_string_message,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	MapFixed64Enum   map[uint64]FieldTestMessage_Enum     `protobuf:"bytes,502,rep,name=map_fixed64_enum,json=mapFixed64Enum,proto3" json:"map_fixed64_enum,omitempty" protobuf_key:"fixed64,1,opt,name=key" protobuf_val:"varint,2,opt,name=value,enum=goproto.protoc.proto3.FieldTestMessage_Enum"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
 }
 
 func (x *FieldTestMessage) Reset() {
 	*x = FieldTestMessage{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_cmd_protoc_gen_go_testdata_proto3_fields_proto_msgTypes[0]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
+	mi := &file_cmd_protoc_gen_go_testdata_proto3_fields_proto_msgTypes[0]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
 }
 
 func (x *FieldTestMessage) String() string {
@@ -118,7 +116,7 @@ func (*FieldTestMessage) ProtoMessage() {}
 
 func (x *FieldTestMessage) ProtoReflect() protoreflect.Message {
 	mi := &file_cmd_protoc_gen_go_testdata_proto3_fields_proto_msgTypes[0]
-	if protoimpl.UnsafeEnabled && x != nil {
+	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
 			ms.StoreMessageInfo(mi)
@@ -393,18 +391,16 @@ func (x *FieldTestMessage) GetMapFixed64Enum() map[uint64]FieldTestMessage_Enum 
 }
 
 type FieldTestMessage_Message struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
+	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *FieldTestMessage_Message) Reset() {
 	*x = FieldTestMessage_Message{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_cmd_protoc_gen_go_testdata_proto3_fields_proto_msgTypes[4]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
+	mi := &file_cmd_protoc_gen_go_testdata_proto3_fields_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
 }
 
 func (x *FieldTestMessage_Message) String() string {
@@ -415,7 +411,7 @@ func (*FieldTestMessage_Message) ProtoMessage() {}
 
 func (x *FieldTestMessage_Message) ProtoReflect() protoreflect.Message {
 	mi := &file_cmd_protoc_gen_go_testdata_proto3_fields_proto_msgTypes[4]
-	if protoimpl.UnsafeEnabled && x != nil {
+	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
 			ms.StoreMessageInfo(mi)
@@ -432,7 +428,7 @@ func (*FieldTestMessage_Message) Descriptor() ([]byte, []int) {
 
 var File_cmd_protoc_gen_go_testdata_proto3_fields_proto protoreflect.FileDescriptor
 
-var file_cmd_protoc_gen_go_testdata_proto3_fields_proto_rawDesc = []byte{
+var file_cmd_protoc_gen_go_testdata_proto3_fields_proto_rawDesc = string([]byte{
 	0x0a, 0x2e, 0x63, 0x6d, 0x64, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x2d, 0x67, 0x65, 0x6e,
 	0x2d, 0x67, 0x6f, 0x2f, 0x74, 0x65, 0x73, 0x74, 0x64, 0x61, 0x74, 0x61, 0x2f, 0x70, 0x72, 0x6f,
 	0x74, 0x6f, 0x33, 0x2f, 0x66, 0x69, 0x65, 0x6c, 0x64, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f,
@@ -584,23 +580,23 @@ var file_cmd_protoc_gen_go_testdata_proto3_fields_proto_rawDesc = []byte{
 	0x74, 0x6f, 0x63, 0x2d, 0x67, 0x65, 0x6e, 0x2d, 0x67, 0x6f, 0x2f, 0x74, 0x65, 0x73, 0x74, 0x64,
 	0x61, 0x74, 0x61, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74,
 	0x6f, 0x33,
-}
+})
 
 var (
 	file_cmd_protoc_gen_go_testdata_proto3_fields_proto_rawDescOnce sync.Once
-	file_cmd_protoc_gen_go_testdata_proto3_fields_proto_rawDescData = file_cmd_protoc_gen_go_testdata_proto3_fields_proto_rawDesc
+	file_cmd_protoc_gen_go_testdata_proto3_fields_proto_rawDescData []byte
 )
 
 func file_cmd_protoc_gen_go_testdata_proto3_fields_proto_rawDescGZIP() []byte {
 	file_cmd_protoc_gen_go_testdata_proto3_fields_proto_rawDescOnce.Do(func() {
-		file_cmd_protoc_gen_go_testdata_proto3_fields_proto_rawDescData = protoimpl.X.CompressGZIP(file_cmd_protoc_gen_go_testdata_proto3_fields_proto_rawDescData)
+		file_cmd_protoc_gen_go_testdata_proto3_fields_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_cmd_protoc_gen_go_testdata_proto3_fields_proto_rawDesc), len(file_cmd_protoc_gen_go_testdata_proto3_fields_proto_rawDesc)))
 	})
 	return file_cmd_protoc_gen_go_testdata_proto3_fields_proto_rawDescData
 }
 
 var file_cmd_protoc_gen_go_testdata_proto3_fields_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
 var file_cmd_protoc_gen_go_testdata_proto3_fields_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
-var file_cmd_protoc_gen_go_testdata_proto3_fields_proto_goTypes = []interface{}{
+var file_cmd_protoc_gen_go_testdata_proto3_fields_proto_goTypes = []any{
 	(FieldTestMessage_Enum)(0),       // 0: goproto.protoc.proto3.FieldTestMessage.Enum
 	(*FieldTestMessage)(nil),         // 1: goproto.protoc.proto3.FieldTestMessage
 	nil,                              // 2: goproto.protoc.proto3.FieldTestMessage.MapInt32Int64Entry
@@ -630,37 +626,11 @@ func file_cmd_protoc_gen_go_testdata_proto3_fields_proto_init() {
 	if File_cmd_protoc_gen_go_testdata_proto3_fields_proto != nil {
 		return
 	}
-	if !protoimpl.UnsafeEnabled {
-		file_cmd_protoc_gen_go_testdata_proto3_fields_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*FieldTestMessage); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_cmd_protoc_gen_go_testdata_proto3_fields_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*FieldTestMessage_Message); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: file_cmd_protoc_gen_go_testdata_proto3_fields_proto_rawDesc,
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_cmd_protoc_gen_go_testdata_proto3_fields_proto_rawDesc), len(file_cmd_protoc_gen_go_testdata_proto3_fields_proto_rawDesc)),
 			NumEnums:      1,
 			NumMessages:   5,
 			NumExtensions: 0,
@@ -672,7 +642,6 @@ func file_cmd_protoc_gen_go_testdata_proto3_fields_proto_init() {
 		MessageInfos:      file_cmd_protoc_gen_go_testdata_proto3_fields_proto_msgTypes,
 	}.Build()
 	File_cmd_protoc_gen_go_testdata_proto3_fields_proto = out.File
-	file_cmd_protoc_gen_go_testdata_proto3_fields_proto_rawDesc = nil
 	file_cmd_protoc_gen_go_testdata_proto3_fields_proto_goTypes = nil
 	file_cmd_protoc_gen_go_testdata_proto3_fields_proto_depIdxs = nil
 }
